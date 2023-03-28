@@ -8,6 +8,6 @@
 
         public const string Password = "123456";
         public const string AdminUsername = "admin@abv.bg";
-        public static string username = string.Format($"{0}{1}@abv.bg");
+        public static string username = string.Format("{0}{1}@abv.bg");
     }
 }

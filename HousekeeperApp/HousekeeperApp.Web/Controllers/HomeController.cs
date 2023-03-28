@@ -1,4 +1,4 @@
-﻿using HousekeeperApp.Web.Models;
+﻿using HousekeeperApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

@@ -8,8 +8,12 @@
     using System.Collections.Generic;
     using System;
     using Housekeeper.Common;
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using static System.Net.WebRequestMethods;
 
-    public class ApplicationDbContext : IdentityDbContext
+    // Add-Migration InitialMigration -OutputDir Migrations  -Project HousekeeperApp.Data -StartupProject HousekeeperApp.Web
+    // Update-Database -Project HousekeeperApp.Data -StartupProject HousekeeperApp.Web
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options)
@@ -75,7 +79,7 @@
                     });
                 });
 
-            // Add user to role
+            // Add admin to role
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
                 RoleId = adminRole.Id,
@@ -87,7 +91,7 @@
             // Add Clients
             for (int i = 0; i < 100; i++)
             {
-                User user = this.CreateUser(string.Format(GlobalConstants.username, GlobalConstants.ClientRole.ToLower(), i));
+                User user = this.CreateUser($"client{i}@abv.bg");
                 Client client = new Client()
                 {
                     UserId = user.Id,
@@ -106,7 +110,7 @@
             // Add Housekeeperes
             for (int i = 0; i < 50; i++)
             {
-                User user = this.CreateUser(string.Format(GlobalConstants.username, GlobalConstants.HousekeeperRole.ToLower(), i));
+                User user = this.CreateUser($"housekeeper{i}@abv.bg");
                 Housekeeper housekeeper = new Housekeeper()
                 {
                     UserId = user.Id,

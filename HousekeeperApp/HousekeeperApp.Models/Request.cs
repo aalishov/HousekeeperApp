@@ -16,7 +16,9 @@
 
         public string Description { get; set; }
 
-        public Location Location { get; set; }
+        public string LocationId { get; set; }
+
+        public virtual Location Location { get; set; }
 
         public DateTime ExpireDate { get; set; }
 
