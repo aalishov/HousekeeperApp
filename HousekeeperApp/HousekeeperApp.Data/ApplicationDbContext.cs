@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousekeeperApp.Web.Data
+namespace HousekeeperApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

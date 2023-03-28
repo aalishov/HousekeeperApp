@@ -1,6 +1,6 @@
 using System;
 
-namespace HousekeeperApp.Web.Models
+namespace HousekeeperApp.ViewModels
 {
     public class ErrorViewModel
     {

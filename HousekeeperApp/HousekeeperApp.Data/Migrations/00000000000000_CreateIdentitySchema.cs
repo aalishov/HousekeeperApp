@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace HousekeeperApp.Web.Data.Migrations
+namespace HousekeeperApp.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
