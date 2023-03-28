@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Housekeeper.Common\Housekeeper.Common.csproj" />
+    <ProjectReference Include="..\Housekeeper.Common\HousekeeperApp.Common.csproj" />
     <ProjectReference Include="..\HousekeeperApp.Data\HousekeeperApp.Data.csproj" />
     <ProjectReference Include="..\HousekeeperApp.Models\HousekeeperApp.Models.csproj" />
     <ProjectReference Include="..\HousekeeperApp.ViewModels\HousekeeperApp.ViewModels.csproj" />

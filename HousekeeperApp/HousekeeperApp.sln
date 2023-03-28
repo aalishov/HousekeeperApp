@@ -3,22 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousekeeperApp.Data", "HousekeeperApp.Data\HousekeeperApp.Data.csproj", "{71609909-EAE3-498F-AEFC-C8B78221836F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousekeeperApp.Data", "HousekeeperApp.Data\HousekeeperApp.Data.csproj", "{71609909-EAE3-498F-AEFC-C8B78221836F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousekeeperApp.Models", "HousekeeperApp.Models\HousekeeperApp.Models.csproj", "{D055802A-BF6C-4AA1-A833-67EE3E44C859}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousekeeperApp.Models", "HousekeeperApp.Models\HousekeeperApp.Models.csproj", "{D055802A-BF6C-4AA1-A833-67EE3E44C859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousekeeperApp.ViewModels", "HousekeeperApp.ViewModels\HousekeeperApp.ViewModels.csproj", "{6DE30FB5-AA21-4771-B648-9D02205C69D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousekeeperApp.ViewModels", "HousekeeperApp.ViewModels\HousekeeperApp.ViewModels.csproj", "{6DE30FB5-AA21-4771-B648-9D02205C69D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousekeeperApp.Services", "HousekeeperApp.Services\HousekeeperApp.Services.csproj", "{4CE9E820-AC30-4023-9605-1B1F692E116A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousekeeperApp.Services", "HousekeeperApp.Services\HousekeeperApp.Services.csproj", "{4CE9E820-AC30-4023-9605-1B1F692E116A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousekeeperApp.Web", "HousekeeperApp.Web\HousekeeperApp.Web.csproj", "{035822F2-5209-4AE4-B111-104EF4C83FCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousekeeperApp.Web", "HousekeeperApp.Web\HousekeeperApp.Web.csproj", "{035822F2-5209-4AE4-B111-104EF4C83FCB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB7E520A-2F9E-4E7C-99AA-612E3EDBF52E}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Housekeeper.Common", "Housekeeper.Common\Housekeeper.Common.csproj", "{FF5DAB8C-CC5E-4C56-BEF2-EE4717EA6205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HousekeeperApp.Common", "Housekeeper.Common\HousekeeperApp.Common.csproj", "{FF5DAB8C-CC5E-4C56-BEF2-EE4717EA6205}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Housekeeper.Common\Housekeeper.Common.csproj" />
+    <ProjectReference Include="..\Housekeeper.Common\HousekeeperApp.Common.csproj" />
     <ProjectReference Include="..\HousekeeperApp.Models\HousekeeperApp.Models.csproj" />
   </ItemGroup>
 

@@ -24,7 +24,7 @@
 		<ProjectReference Include="..\HousekeeperApp.Models\HousekeeperApp.Models.csproj" />
 		<ProjectReference Include="..\HousekeeperApp.Services\HousekeeperApp.Services.csproj" />
 		<ProjectReference Include="..\HousekeeperApp.ViewModels\HousekeeperApp.ViewModels.csproj" />
-		<ProjectReference Include="..\Housekeeper.Common\Housekeeper.Common.csproj" />
+		<ProjectReference Include="..\Housekeeper.Common\HousekeeperApp.Common.csproj" />
 	</ItemGroup>
 
 </Project>
