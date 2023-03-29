@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 #Custom ignore file
-/Housekeeper.Web/appsettings.Production.json
+/HousekeeperApp/HousekeeperApp.Web/appsettings.Production.json
 
 # User-specific files
 *.rsuser
@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
