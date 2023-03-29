@@ -33,7 +33,7 @@ namespace HousekeeperApp.Data.Seeding
                 string lastName = SeederConstants.lastNames[random.Next(0, SeederConstants.lastNames.Count - 1)];
                 string email = string.Format(SeederConstants.username, firstName.ToLower(), lastName.ToLower(), i, SeederConstants.mails[random.Next(0, SeederConstants.mails.Count - 1)]);
 
-                User user = await SeedUserAsync(dbContext, userManager, roleManager, firstName, lastName, , SeederConstants.Password, GlobalConstants.ClientRole);
+                User user = await SeedUserAsync(dbContext, userManager, roleManager, firstName, lastName, email, SeederConstants.Password, GlobalConstants.ClientRole);
 
                 Client client = new Client() { User = user };
                 dbContext.Clients.Add(client);

@@ -16,6 +16,7 @@
     <ProjectReference Include="..\HousekeeperApp.Data\HousekeeperApp.Data.csproj" />
     <ProjectReference Include="..\HousekeeperApp.Models\HousekeeperApp.Models.csproj" />
     <ProjectReference Include="..\HousekeeperApp.ViewModels\HousekeeperApp.ViewModels.csproj" />
+	 <PackageReference Include="Sendgrid" Version="9.21.0" />
   </ItemGroup>
 
 </Project>
