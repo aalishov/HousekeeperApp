@@ -51,6 +51,7 @@ namespace HousekeeperApp.Web
             services.AddTransient<IUsersService, UsersService>();
             string key = this.Configuration["SendGrid:ApiKey"];
 
+            services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(key));
         }
 
