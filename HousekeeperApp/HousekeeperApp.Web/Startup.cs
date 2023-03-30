@@ -1,6 +1,8 @@
 using HousekeeperApp.Data;
 using HousekeeperApp.Data.Seeding;
 using HousekeeperApp.Models;
+using HousekeeperApp.Services;
+using HousekeeperApp.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -46,6 +48,7 @@ namespace HousekeeperApp.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddTransient<IUsersService, UsersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

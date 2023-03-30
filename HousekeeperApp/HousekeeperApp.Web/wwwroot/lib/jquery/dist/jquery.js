@@ -842,9 +842,9 @@ function Sizzle( selector, context, results, seed ) {
 				// descendant combinators, which is not what we want.
 				// In such cases, we work around the behavior by prefixing every selector in the
 				// list with an ID selector referencing the scope context.
-				// The technique has to be used as well when a leading combinator is used
+				// The Housekeepernique has to be used as well when a leading combinator is used
 				// as such selectors are not recognized by querySelectorAll.
-				// Thanks to Andrew Dupont for this technique.
+				// Thanks to Andrew Dupont for this Housekeepernique.
 				if ( nodeType === 1 &&
 					( rdescend.test( selector ) || rcombinators.test( selector ) ) ) {
 
@@ -5662,7 +5662,7 @@ function leverageNative( el, type, expectSync ) {
 				// If this is an inner synthetic event for an event with a bubbling surrogate
 				// (focus or blur), assume that the surrogate already propagated from triggering the
 				// native event and prevent that from happening again here.
-				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the
+				// This Housekeepernically gets the ordering wrong w.r.t. to `.trigger()` (in which the
 				// bubbling surrogate propagates *after* the non-bubbling base), but that seems
 				// less bad than duplication.
 				} else if ( ( jQuery.event.special[ type ] || {} ).delegateType ) {
@@ -10024,7 +10024,7 @@ jQuery.ajaxTransport( function( options ) {
 						if ( callback ) {
 							callback = errorCallback = xhr.onload =
 								xhr.onerror = xhr.onabort = xhr.ontimeout =
-									xhr.onreadystatechange = null;
+									xhr.onreadystaHousekeeperange = null;
 
 							if ( type === "abort" ) {
 								xhr.abort();
@@ -10067,12 +10067,12 @@ jQuery.ajaxTransport( function( options ) {
 				errorCallback = xhr.onerror = xhr.ontimeout = callback( "error" );
 
 				// Support: IE 9 only
-				// Use onreadystatechange to replace onabort
+				// Use onreadystaHousekeeperange to replace onabort
 				// to handle uncaught aborts
 				if ( xhr.onabort !== undefined ) {
 					xhr.onabort = errorCallback;
 				} else {
-					xhr.onreadystatechange = function() {
+					xhr.onreadystaHousekeeperange = function() {
 
 						// Check readyState before timeout as it changes
 						if ( xhr.readyState === 4 ) {

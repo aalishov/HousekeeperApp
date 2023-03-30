@@ -8,3 +8,12 @@ dotnet_diagnostic.SA1633.severity = none
 
 # SA1602: Enumeration items should be documented
 dotnet_diagnostic.SA1602.severity = none
+
+# SA1208: System using directives should be placed before other using directives
+dotnet_diagnostic.SA1208.severity = none
+
+# IDE0065: Misplaced using directive
+dotnet_diagnostic.IDE0065.severity = none
+
+# SA1135: Using directives should be qualified
+dotnet_diagnostic.SA1135.severity = none
