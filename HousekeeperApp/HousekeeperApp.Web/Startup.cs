@@ -50,8 +50,9 @@ namespace HousekeeperApp.Web
             services.AddRazorPages();
             services.AddTransient<IUsersService, UsersService>();
 
-
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<ILocationsService, LocationsService>();
+            services.AddTransient<IRequestsService, RequestsService>();
 
             string key = this.Configuration["SendGrid:ApiKey"];
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(key));
@@ -68,7 +69,6 @@ namespace HousekeeperApp.Web
                     var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                     dbContext.Database.Migrate();
 
-                    // dbContext.ChangeTracker.LazyLoadingEnabled = false;
                     new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
                 }
 

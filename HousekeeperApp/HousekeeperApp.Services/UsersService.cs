@@ -106,15 +106,15 @@
             return model;
         }
 
-        public async Task<UserViewModel> GetUserByIdAsync(string id)
+        public async Task<IndexUserViewModel> GetUserByIdAsync(string id)
         {
             User user = await context.Users.FindAsync(id);
 
-            UserViewModel model = null;
+            IndexUserViewModel model = null;
 
             if (user != null)
             {
-                model = new UserViewModel()
+                model = new IndexUserViewModel()
                 {
                     Id = user.Id,
                     FirstName = user.FirstName,
@@ -127,9 +127,9 @@
             return model;
         }
 
-        public async Task<UsersViewModel> GetUsersAsync(int page = 1, int count = 10)
+        public async Task<IndexUsersViewModel> GetUsersAsync(int page = 1, int count = 10)
         {
-            UsersViewModel model = new UsersViewModel();
+            IndexUsersViewModel model = new IndexUsersViewModel();
 
             model.ItemsPerPage = count;
             model.Page = page;
@@ -138,7 +138,7 @@
             model.Users = await this.context.Users
                   .Skip((page - 1) * count)
                   .Take(count)
-                  .Select(x => new UserViewModel()
+                  .Select(x => new IndexUserViewModel()
                   {
                       Id = x.Id,
                       FirstName = x.FirstName,

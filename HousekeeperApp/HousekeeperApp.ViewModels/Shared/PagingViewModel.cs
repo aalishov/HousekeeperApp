@@ -3,7 +3,7 @@
     using System;
     public class PagingViewModel
     {
-        public PagingViewModel(int itemsPerPage = 5, string action = "Index")
+        public PagingViewModel(int itemsPerPage = 10, string action = "Index")
         {
             this.ItemsPerPage = itemsPerPage;
             this.Action = action;

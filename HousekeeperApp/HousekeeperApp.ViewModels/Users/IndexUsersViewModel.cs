@@ -2,8 +2,8 @@
 {
     using ViewModels.Shared;
     using System.Collections.Generic;
-    public class UsersViewModel:PagingViewModel
+    public class IndexUsersViewModel:PagingViewModel
     {
-        public ICollection<UserViewModel> Users { get; set; }
+        public ICollection<IndexUserViewModel> Users { get; set; }
     }
 }

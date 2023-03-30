@@ -7,9 +7,9 @@
     {
         Task CreateHousekeeperAsync(CreateHousekeeperViewModel model);
 
-        Task<UserViewModel> GetUserByIdAsync(string id);
+        Task<IndexUserViewModel> GetUserByIdAsync(string id);
 
-        Task<UsersViewModel> GetUsersAsync(int page = 1, int count = 10);
+        Task<IndexUsersViewModel> GetUsersAsync(int page = 1, int count = 10);
 
         Task DeleteUserByIdAsync(string id);
 

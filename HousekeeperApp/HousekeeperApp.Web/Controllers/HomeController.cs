@@ -27,6 +27,7 @@ namespace HousekeeperApp.Web.Controllers
 
         public async Task<string> SendEmail()
         {
+
             await this.emailSender.SendEmailAsync("a.alishov@live.com", "Alishov", "alishalishov92@gmail.com", "DemoEmail", "<h1>Имаш поща</h1>");
             await this.emailSender.SendEmailAsync("a.alishov@live.com", "Alishov", "a_alishov@abv.bg", "DemoEmail", "<h1>Имаш поща</h1>");
 
