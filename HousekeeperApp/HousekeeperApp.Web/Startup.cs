@@ -49,6 +49,9 @@ namespace HousekeeperApp.Web
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddTransient<IUsersService, UsersService>();
+            string key = this.Configuration["SendGrid:ApiKey"];
+
+            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(key));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
