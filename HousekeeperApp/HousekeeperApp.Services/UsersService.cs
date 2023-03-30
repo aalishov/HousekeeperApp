@@ -28,6 +28,8 @@
         public async Task DeleteUserByIdAsync(string id)
         {
             User user = await userManager.FindByIdAsync(id);
+            user.Client.Requests.Clear();
+            user.Client = null;
 
             await userManager.DeleteAsync(user);
         }
@@ -71,7 +73,7 @@
                 user.Client = null;
                 if (model.Role == "Housekeeper")
                 {
-                    Housekeeper housekeeper = new Housekeeper() {  };
+                    Housekeeper housekeeper = new Housekeeper() { };
                     user.Housekeeper = housekeeper;
                     await userManager.RemoveFromRoleAsync(user, nameof(Client));
                     await userManager.AddToRoleAsync(user, nameof(Housekeeper));
@@ -84,7 +86,7 @@
                     await userManager.AddToRoleAsync(user, nameof(Client));
                 }
             }
-            
+
             await context.SaveChangesAsync();
         }
         public async Task<EditUserViewModel> GetUserToEditByIdAsync(string id)
