@@ -69,12 +69,6 @@
         }
     </tbody>
 </table>
-<form asp-controller="Requests" asp-action="Index" method="post">
-    <select asp-for="ItemsPerPage">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-    </select>
-    <input type="submit" />
-</form>
+
 <partial name="_PagingPartial" />
+
