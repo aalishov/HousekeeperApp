@@ -1,6 +1,7 @@
 ﻿using HousekeeperApp.Models;
 using HousekeeperApp.ViewModels.Locations;
 using HousekeeperApp.ViewModels.Requests;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,16 +13,23 @@ namespace HousekeeperApp.Services.Contracts
     {
         Task<IndexRequestsViewModel> GetIndexRequestsAsync(IndexRequestsViewModel model, string userId = null);
 
-        public Task<EditRequestViewModel> GetEditRequestByClientViewModel(string id);
-
-        public Task<EditRequestViewModel> GetEditRequestByAdminViewModel(string id);
-
         public Task<Request> GetRequestByIdAsync(string id);
 
-        Task CreateRequestAsync(CreateRequestViewModel model, string userId);
+        Task CreateRequestAsync(CreateRequestViewModel model);
 
-        Task UpdateRequestAsync(EditRequestViewModel model);
+        Task Complete(string id);
+
+        Task Cancele(string id);
 
         Task DeleteAsync(string id);
+
+        Task<EditRequestViewModel> GetRequestToEditAsync(string id);
+        Task<SelectList> GetHousekeepersSelectListAsync();
+
+
+        Task EditRequestByClientAsync(EditRequestViewModel model);
+
+        Task<EditRequestByAdminViewModel> GetRequestToEditByAdminAsync(string id);
+        Task EditRequestByAdminAsync(EditRequestByAdminViewModel model);
     }
 }

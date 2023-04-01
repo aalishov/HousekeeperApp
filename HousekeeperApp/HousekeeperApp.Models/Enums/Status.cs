@@ -6,6 +6,6 @@
         PendingVisit = 1,
         Review = 2,
         Finished = 3,
-        Canceled = 4,
+        Cancele = 4,
     }
 }

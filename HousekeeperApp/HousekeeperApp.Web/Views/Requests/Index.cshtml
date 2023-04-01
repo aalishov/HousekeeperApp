@@ -17,16 +17,13 @@
                 Status
             </th>
             <th>
-                Tech
+                Category
             </th>
             <th>
-                Customer
+                Expire date
             </th>
             <th>
-                Visit date
-            </th>
-            <th>
-                Image
+                Housekeeper
             </th>
             <th></th>
         </tr>
@@ -51,11 +48,19 @@
                     @Html.DisplayFor(modelItem => item.Housekeeper)
                 </td>
                 <td>
-                    @if (User.IsInRole(GlobalConstants.ClientRole))
+                    @if (item.Status == HousekeeperApp.Models.Enums.Status.Review && User.IsInRole(GlobalConstants.ClientRole))
+                    {
+                        <a asp-action="Complete" asp-route-id="@item.Id" class="btn btn-sm btn-success"><i class="fa-solid fa-check-double"></i></a>
+                    }
+                    @if (item.Status == HousekeeperApp.Models.Enums.Status.Pending && User.IsInRole(GlobalConstants.ClientRole))
+                    {
+                        <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fa-solid fa-ban"></i></a>
+                    }
+                    @if (item.Status != HousekeeperApp.Models.Enums.Status.Cancele&&User.IsInRole(GlobalConstants.ClientRole))
                     {
                         <a asp-action="EditByClient" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                     }
-                    else if (User.IsInRole(GlobalConstants.AdminRole))
+                    @if (User.IsInRole(GlobalConstants.AdminRole))
                     {
                         <a asp-action="EditByAdmin" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                     }

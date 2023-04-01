@@ -2,6 +2,7 @@
 using HousekeeperApp.Models;
 using HousekeeperApp.Services.Contracts;
 using HousekeeperApp.ViewModels.Locations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -82,6 +83,18 @@ namespace HousekeeperApp.Services
             location.Address = model.Address;
             this.context.Update(location);
             await this.context.SaveChangesAsync();
+        }
+
+        public async Task<SelectList> GetLocationSelectListAsync(string userId)
+        {
+            List<SelectListLocationViewModel> locations = await this.context.Locations
+                .Where(x => x.Client.UserId == userId)
+                .Select(x => new SelectListLocationViewModel()
+                {
+                    Id = x.Id,
+                    NameAndAddress = $"{x.Name} - {x.Address}",
+                }).ToListAsync();
+            return new SelectList(locations, "Id", "NameAndAddress");
         }
     }
 }
