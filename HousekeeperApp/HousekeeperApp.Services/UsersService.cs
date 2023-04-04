@@ -127,17 +127,17 @@
             return model;
         }
 
-        public async Task<IndexUsersViewModel> GetUsersAsync(int page = 1, int count = 10)
+        public async Task<IndexUsersViewModel> GetUsersAsync(int page = 1, int itemsPerPage = 10)
         {
             IndexUsersViewModel model = new IndexUsersViewModel();
 
-            model.ItemsPerPage = count;
+            model.ItemsPerPage = itemsPerPage;
             model.Page = page;
             model.ElementsCount = await this.context.Users.CountAsync();
 
             model.Users = await this.context.Users
-                  .Skip((page - 1) * count)
-                  .Take(count)
+                  .Skip((page - 1) * itemsPerPage)
+                  .Take(itemsPerPage)
                   .Select(x => new IndexUserViewModel()
                   {
                       Id = x.Id,

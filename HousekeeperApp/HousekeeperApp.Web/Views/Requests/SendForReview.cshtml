@@ -1,0 +1,58 @@
+﻿@model SendForReviewViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Send for review</h1>
+
+<h4>Send for review</h4>
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3" style="background-color:#F0F2F5">
+            <div class="card-body p-4 p-md-5">
+                <form asp-controller="Requests" asp-action="SendForReview" enctype="multipart/form-data" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <h4>Send for review.</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" disabled />
+                        <span asp-validation-for=" Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for=" Location"></label>
+                        <input asp-for=" Location" class="form-control" disabled />
+                        <span asp-validation-for=" Location" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for=" ExpireDate"></label>
+                        <input asp-for=" ExpireDate" class="form-control" disabled />
+                        <span asp-validation-for=" ExpireDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Category"></label>
+                        <select asp-for="Category" class="form-control" asp-items="Html.GetEnumSelectList<HousekeeperApp.Models.Enums.Category>()" disabled></select>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                     <div class="form-group">
+                        <label asp-for="PictureFile" class="form-label"></label>
+                        <input asp-for="PictureFile" type="file"  class="form-control" />
+                        <span asp-validation-for="PictureFile" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

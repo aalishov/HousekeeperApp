@@ -9,7 +9,7 @@
 
         Task<IndexUserViewModel> GetUserByIdAsync(string id);
 
-        Task<IndexUsersViewModel> GetUsersAsync(int page = 1, int count = 10);
+        Task<IndexUsersViewModel> GetUsersAsync(int page = 1,  int itemsPerPage = 10);
 
         Task DeleteUserByIdAsync(string id);
 

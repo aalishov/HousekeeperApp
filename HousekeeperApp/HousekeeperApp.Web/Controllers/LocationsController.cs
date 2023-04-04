@@ -1,11 +1,13 @@
 ﻿using HousekeeperApp.Services.Contracts;
 using HousekeeperApp.ViewModels.Locations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HousekeeperApp.Web.Controllers
 {
+    [Authorize(Roles = ("Admin,Client"))]
     public class LocationsController : Controller
     {
         private readonly ILocationsService service;

@@ -4,10 +4,12 @@ using HousekeeperApp.Services.Contracts;
 using HousekeeperApp.ViewModels.Housekeepers;
 using HousekeeperApp.ViewModels.Locations;
 using HousekeeperApp.ViewModels.Requests;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,8 +87,11 @@ namespace HousekeeperApp.Services
 
         public async Task<IndexRequestsViewModel> GetIndexRequestsAsync(IndexRequestsViewModel model, string userId = null)
         {
+            bool isClient = this.context.Clients.Any(x => x.User.Id == userId);
+
             model.Requests = await this.context.Requests
-                .Where(x => userId != null ? x.Client.UserId == userId : x.Id != null)
+                .Where(x => userId != null && isClient ? x.Client.User.Id == userId : x.Id != null)
+                .Where(x => userId != null && !isClient ? x.Housekeeper.User.Id == userId : x.Id != null)
                 .Skip((model.Page - 1) * model.ItemsPerPage)
                 .Take(model.ItemsPerPage)
                 .Select(x => new IndexRequestViewModel()
@@ -106,6 +111,19 @@ namespace HousekeeperApp.Services
             return model;
         }
 
+        public async Task<SendForReviewViewModel> GetRequestToReview(string id)
+        {
+            Request request = await this.context.Requests.FindAsync(id);
+            return new SendForReviewViewModel()
+            {
+                Id = request.Id,
+                Name = request.Name,
+                Category = request.Category,
+                ExpireDate = request.ExpireDate.ToShortDateString(),
+                Location = request.Location.Name,
+            };
+        }
+
         public Task<Request> GetRequestByIdAsync(string id)
         {
             throw new NotImplementedException();
@@ -118,7 +136,7 @@ namespace HousekeeperApp.Services
             {
                 request.Status = Models.Enums.Status.Finished;
                 this.context.Update(request);
-               await this.context.SaveChangesAsync();
+                await this.context.SaveChangesAsync();
             }
         }
 
@@ -163,6 +181,27 @@ namespace HousekeeperApp.Services
             return new SelectList(locations, "Id", "FullName");
         }
 
+        public async Task<DetailsRequestViewModel> GetRequestDetails(string id)
+        {
+            Request request = this.context.Requests.Find(id);
+
+            DetailsRequestViewModel model = new DetailsRequestViewModel()
+            {
+                Name = request.Name,
+                Description = string.IsNullOrWhiteSpace(request.Description) ? "=" : request.Description,
+                Budget = request.Budget,
+                Status = request.Status,
+                Category = request.Category,
+                ExpireDate = request.ExpireDate.ToShortDateString(),
+                FinishDate = request.FinishDate != null ? request.FinishDate.GetValueOrDefault().ToShortDateString() : "-",
+                Picture= request.Picture,
+            };
+            model.Client = $"{request.Client.User.FirstName} {request.Client.User.LastName}";
+            model.Housekeeper = request.Housekeeper != null ? $"{request.Housekeeper.User.FirstName} {request.Housekeeper.User.LastName}" : "-";
+
+            return model;
+        }
+
         public async Task EditRequestByAdminAsync(EditRequestByAdminViewModel model)
         {
             Request request = await this.context.Requests.FirstOrDefaultAsync(x => x.Id == model.Id);
@@ -173,10 +212,43 @@ namespace HousekeeperApp.Services
             request.Category = model.Category;
             request.LocationId = model.LocationId;
             request.HousekeeperId = model.HousekeeperId;
-            request.Status=model.Status;
+            request.Status = model.Status;
 
             this.context.Update(request);
             await this.context.SaveChangesAsync();
+        }
+
+        public async Task SendForRequestAsync(SendForReviewViewModel model)
+        {
+            Request request = this.context.Requests.Find(model.Id);
+
+            request.Picture = await this.ImageToStringAsync(model.PictureFile);
+            request.FinishDate = DateTime.UtcNow;
+            request.Status = Models.Enums.Status.Review;
+
+            this.context.Update(request);
+            await this.context.SaveChangesAsync();
+        }
+
+
+        private async Task<string> ImageToStringAsync(IFormFile file)
+        {
+            List<string> imageExtensions = new List<string>() { ".JPG", ".BMP", ".PNG" };
+
+
+            if (file != null) // check if the user uploded something
+            {
+                var extension = Path.GetExtension(file.FileName); //get file extension
+                if (imageExtensions.Contains(extension.ToUpperInvariant()))
+                {
+                    using var dataStream = new MemoryStream();
+                    await file.CopyToAsync(dataStream);
+                    byte[] imageBytes = dataStream.ToArray();
+                    string base64String = Convert.ToBase64String(imageBytes);
+                    return base64String;
+                }
+            }
+            return null;
         }
     }
 }

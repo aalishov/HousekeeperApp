@@ -52,6 +52,10 @@
                     {
                         <a asp-action="Complete" asp-route-id="@item.Id" class="btn btn-sm btn-success"><i class="fa-solid fa-check-double"></i></a>
                     }
+                    @if (item.Status == HousekeeperApp.Models.Enums.Status.PendingVisit && User.IsInRole(GlobalConstants.HousekeeperRole))
+                    {
+                        <a asp-action="SendForReview" asp-route-id="@item.Id" class="btn btn-sm btn-success"><i class="fa-solid fa-check-double"></i></a>
+                    }
                     @if (item.Status == HousekeeperApp.Models.Enums.Status.Pending && User.IsInRole(GlobalConstants.ClientRole))
                     {
                         <a asp-action="Cancel" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fa-solid fa-ban"></i></a>

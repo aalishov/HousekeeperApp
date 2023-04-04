@@ -35,5 +35,9 @@
         public string HousekeeperId { get; set; }
 
         public virtual Housekeeper Housekeeper { get; set; }
+
+        public string Picture { get; set; }
+
+        public DateTime? FinishDate { get; set; }
     }
 }

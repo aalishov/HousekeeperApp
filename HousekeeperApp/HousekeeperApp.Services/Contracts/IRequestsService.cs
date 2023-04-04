@@ -24,12 +24,19 @@ namespace HousekeeperApp.Services.Contracts
         Task DeleteAsync(string id);
 
         Task<EditRequestViewModel> GetRequestToEditAsync(string id);
+
         Task<SelectList> GetHousekeepersSelectListAsync();
 
+        Task<SendForReviewViewModel> GetRequestToReview(string id);
+
+        Task<DetailsRequestViewModel> GetRequestDetails(string id);
 
         Task EditRequestByClientAsync(EditRequestViewModel model);
 
         Task<EditRequestByAdminViewModel> GetRequestToEditByAdminAsync(string id);
+
         Task EditRequestByAdminAsync(EditRequestByAdminViewModel model);
+
+        Task SendForRequestAsync(SendForReviewViewModel model);
     }
 }

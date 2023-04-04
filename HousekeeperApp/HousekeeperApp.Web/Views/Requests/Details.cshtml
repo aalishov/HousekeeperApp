@@ -1,0 +1,40 @@
+﻿@model DetailsRequestViewModel
+
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3" style="background-color:#F0F2F5">
+            <div class="card-body p-4 p-md-5">
+                <div class="card" >
+
+                    @if (Model.Picture != null)
+                    {
+                        <img class="card-img-top" src="data:image/png;base64,@Html.DisplayFor(modelItem => Model.Picture)">
+                    }
+                    else
+                    {
+                        <span><img class="card-img-top" src="https://th.bing.com/th/id/OIP.hV6MoBaE8NYeMCugmhd7_QHaEo?w=302&h=188&c=7&r=0&o=5&dpr=1.4&pid=1.7"></span>
+                    }
+                    <div class="card-body">
+
+                        <label asp-for="Description"></label>
+                        <p class="card-text">@Model.Name</p>
+                        <label asp-for="Description"></label>
+                        <p class="card-text"> @Model.Description</p>
+                        <label asp-for="Client"></label>
+                        <p class="card-text"> @Model.Client</p>
+                        <label asp-for="Housekeeper"></label>
+                        <p class="card-text"> @Model.Housekeeper</p>
+                        <label asp-for="ExpireDate"></label>
+                        <p class="card-text"> @Model.ExpireDate</p>
+                        <label asp-for="FinishDate"></label>
+                        <p class="card-text"> @Model.FinishDate</p>
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

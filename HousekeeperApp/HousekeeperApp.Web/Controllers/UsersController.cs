@@ -13,7 +13,7 @@
     using Services;
     using ViewModels.Users;
 
-   // [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private readonly IUsersService usersService;
@@ -25,13 +25,13 @@
         }
 
         // GET: Users
-        public async Task<IActionResult> Index(int page = 1, int count = 10)
+        public async Task<IActionResult> Index(int page = 1,  int itemsPerPage = 10)
         {
-            var model = await usersService.GetUsersAsync(page, count);
+            var model = await usersService.GetUsersAsync(page, itemsPerPage);
             return View(model);
         }
 
-        
+
         // GET: Users/Details/5
         public async Task<IActionResult> Details(string id)
         {

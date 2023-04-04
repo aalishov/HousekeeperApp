@@ -2,7 +2,7 @@
 <nav aria-label="..." class="">
     <ul class="pagination  justify-content-center ">
         <li style="margin-right:5px">
-            <form asp-controller="Requests" asp-action="Index" method="post">
+            <form asp-controller="@this.Context.Request.RouteValues["controller"].ToString()" asp-action="Index" method="post">
                 <select asp-for="ItemsPerPage" class="form-control border-dark" onchange="changeItemsPerPage();">
                     <option value="5">5</option>
                     <option value="10">10</option>

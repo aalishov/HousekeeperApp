@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace HousekeeperApp.Web.Controllers
 {
+    [Authorize]
     public class RequestsController : Controller
     {
         private readonly IRequestsService requestsService;
@@ -25,7 +26,7 @@ namespace HousekeeperApp.Web.Controllers
         public async Task<IActionResult> Index(IndexRequestsViewModel model)
         {
             string userId = null;
-            if (this.User.IsInRole(GlobalConstants.ClientRole))
+            if (this.User.IsInRole(GlobalConstants.ClientRole) || this.User.IsInRole(GlobalConstants.HousekeeperRole))
             {
                 userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             }
@@ -35,6 +36,7 @@ namespace HousekeeperApp.Web.Controllers
             return this.View(model);
         }
 
+        [Authorize(Roles = "Client")]
         // GET: Create
         public async Task<IActionResult> Create()
         {
@@ -45,6 +47,7 @@ namespace HousekeeperApp.Web.Controllers
             return this.View(model);
         }
 
+        [Authorize(Roles = "Client")]
         // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,18 +65,48 @@ namespace HousekeeperApp.Web.Controllers
             return this.View(model);
         }
 
+        [Authorize(Roles = ("Client"))]
         public async Task<IActionResult> Complete(string id)
         {
             await this.requestsService.Complete(id);
             return this.RedirectToAction(nameof(this.Index));
         }
 
+        [Authorize(Roles = ("Admin,Client"))]
         public async Task<IActionResult> Cancel(string id)
         {
             await this.requestsService.Cancele(id);
             return this.RedirectToAction(nameof(this.Index));
         }
 
+        public async Task<IActionResult> Details(string id)
+        {
+            DetailsRequestViewModel model = await this.requestsService.GetRequestDetails(id);
+            return this.View(model);
+        }
+
+        [Authorize(Roles = ("Housekeeper"))]
+        [HttpGet]
+        public async Task<IActionResult> SendForReview(string id)
+        {
+            SendForReviewViewModel model = await requestsService.GetRequestToReview(id);
+            return this.View(model);
+        }
+
+        [Authorize(Roles = ("Housekeeper"))]
+        [HttpPost]
+        public async Task<IActionResult> SendForReview(SendForReviewViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                await this.requestsService.SendForRequestAsync(model);
+                return this.RedirectToAction(nameof(this.Index));
+            }
+
+            return this.View(model);
+        }
+
+        [Authorize(Roles = ("Client"))]
         [HttpGet]
         public async Task<IActionResult> EditByClient(string id)
         {
@@ -83,6 +116,7 @@ namespace HousekeeperApp.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = ("Client"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditByClient(EditRequestViewModel model)
@@ -97,6 +131,7 @@ namespace HousekeeperApp.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = ("Admin"))]
         [HttpGet]
         public async Task<IActionResult> EditByAdmin(string id)
         {
@@ -106,6 +141,7 @@ namespace HousekeeperApp.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = ("Admin"))]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditByAdmin(EditRequestByAdminViewModel model)
@@ -120,8 +156,6 @@ namespace HousekeeperApp.Web.Controllers
             model.Housekeeprs = await this.requestsService.GetHousekeepersSelectListAsync();
             return View(model);
         }
-
-
 
         [Authorize(Roles = "Admin,Client")]
         [HttpGet]
